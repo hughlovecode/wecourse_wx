@@ -1,0 +1,122 @@
+<!--pages/student/studentList.wxml-->
+<view wx:if="{{btnState}}">  
+<button class='finish' bindtap='finish'>结束签到</button>
+</view>
+<view wx:else>
+<!--开始签到-->
+<picker bindchange="bindCasPickerChange"value=" {{casIndex1}}" range="{{casArray}}">
+      <view>
+       <button class='start'>开始签到</button>
+      </view>
+</picker>
+<!--over 开始签到-->
+</view>
+<button class='Homework' bindtap='homework'>布置作业</button>
+
+<modal hidden="{{hiddenmodalput}}" title="请输入所建立的wifi" confirm-text="提交" cancel-text="取消" bindcancel="wifiCancel" bindconfirm="wifiConfirm">
+    <input type='text'placeholder="请输入内容" bindinput="WifiInput" auto-focus/>
+</modal> 
+
+<view class="container"> 
+<view class='innerContainer'>
+
+ <!--用户基本信息-->
+ <view class='userInfo'>
+ <!--头像和姓名-->
+ <view class='row1'>
+ <view class='userImg'>
+ <image class="user-img" src="{{userImg}}"></image> 
+ </view>
+ <view class='nameText'>{{detail.teacherName}}</view>
+ <view class='CourseNameText'>{{detail.courseName}}</view>
+ </view>
+  <!--课程信息-->
+  <view class='InfoText'>课程信息</view>
+  <view class='CourseInfo'>
+  <label class='classAddress'>{{detail.ClassAddress}}</label>
+  <label class='classId'>课程号：{{detail.courseId}}</label>
+  <label class='classSN'>课序号：{{detail.courseSN}}</label>
+  <label class='StudentCount'>总人数：{{studentsCount}}</label>
+  <!--签到进度条-->
+  <view class='pbar'>
+  <view class='innerbar' style='width:{{barwidth}}rpx'></view>
+  </view>
+  <text class='barText1'>已签：{{signCount}}人</text>
+   <text class='barText2'>未签：{{studentsCount-signCount}}人</text>
+  </view>
+ </view>
+
+<!--列表学生-->
+
+<view wx:for="{{students}}" wx:key="">
+
+<view class='StudentArrayItem'>
+<view class='thumbImg'>
+ <image class="thumb-img" src="{{item.studentImg}}"></image> 
+</view>
+<view class='studentName'>{{item.studentName}}</view>
+<view class='StudentId'>{{item.studentId}}</view>
+
+<button class='StudentInfo' bindtap='getStudentInfo' data-StudentInfo="{{item}}">详情</button>
+<!-->
+<view wx:if="{{item.signInCount[detail.classCount].isSign === 'true'}}">
+<button class='TSignInBtn' bindtap='cancelSignIn' data-StudentInfo="{{item}}">取消</button>
+<view class='CourseState'>完成签到</view>
+</view>
+<view wx:else>
+<button class='TSignInBtn' bindtap='signIn' data-StudentInfo="{{item}}">签到</button>
+</view>-->
+<view wx:for="{{item.signInCount}}" wx:key="" wx:for-item="signitem">
+
+<view wx:if="{{signitem.tag === detail.classCount}}">
+<view wx:if="{{signitem.isSign === 'true'}}">
+<button class='TSignInBtn' bindtap='signOut' data-StudentInfo="{{item}}">取消</button>
+<view class='CourseState'>完成签到</view>
+</view>
+<view wx:else>
+<button class='TSignInBtn' bindtap='signIn' data-StudentInfo="{{item}}">签到</button>
+</view>
+</view>
+
+</view>
+
+
+
+</view>
+
+
+</view>
+</view>
+</view>
+
+
+<!--作业-->
+<modal hidden="{{hiddenHomework}}" title="请输入作业" confirm-text="提交" cancel-text="取消" bindcancel="cancelSetHomework" bindconfirm="confirmSetHomework">
+    <input placeholder='请输入题目' bindinput="HTitleInput"></input>
+    <text>\n</text>
+    <textarea type='text' placeholder='请输入详细内容' bindinput="HContentInput"></textarea>
+</modal>
+<!--下拉输入框-->
+<view class="section {{reply?'on':'off'}}">
+  <modal hidden="{{!reply}}" title="请输入周数" confirm-text="提交" cancel-text="取消" bindcancel="cancelSignIn" bindconfirm="confirmSignIn">
+    <input placeholder='请输入周数' bindinput="HWeekInput"></input>
+  </modal>
+
+</view>
+
+<!--学生信息-->
+<modal hidden="{{hiddenStudentInfo}}" title="学生信息" confirm-text="确认" cancel-text="取消" bindcancel="cancelStudentInfo" bindconfirm="cancelStudentInfo" >
+    <view>
+      <view>
+        <span>姓名:</span>
+        <span>{{info_name}}</span>
+      </view>
+      <view>
+        <span>历史签到数量:</span>
+        <span>{{info_signnum}}/{{info_count}}</span>
+      </view>    
+    </view>
+</modal>
+
+
+

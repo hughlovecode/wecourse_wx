@@ -1,0 +1,72 @@
+<!--pages/user/user.wxml-->
+<view class='body'>
+<view class='allbody'>
+  <header></header>
+  <view class='coursesArray'>
+    <view wx:if='{{status==="t"}}'>
+    <view wx:for="{{courseList}}" wx:key=''>
+    <view class='StudentArrayItem'>
+      <view class='courseImg'>
+        <image class="course-img" src="../../image/loginLog.jpg"></image>
+      </view>
+      <view class='courseName'>{{item.courseName}}</view>
+      <view class='teacherName'>{{item.courseId}}</view>
+      <button class='SignInBtn' bindtap='getStudents' data-CourseInfo="{{item}}">签到</button>
+      <button class='CourseInfoBtn' bindtap='getInfo' data-CourseInfo="{{item}}">详情</button>  
+    </view>
+    </view>
+    </view>
+     <view wx:if='{{status==="s"}}'>
+      
+      <view wx:for="{{courseList}}" wx:key=''>
+        <view class='StudentArrayItem'>
+        <view class='courseImg'>
+          <image class="course-img" src="../../image/loginLog.jpg"></image>
+        </view>
+        <view class='courseName'>{{item.courseName}}</view>
+        <view class='teacherName'>{{item.courseId}}</view>
+        <button class='SignInBtn' bindtap='signIn' data-CourseInfo="{{item}}">签到</button>
+        <button class='CourseInfoBtn' bindtap='getInfo' data-CourseInfo="{{item}}">详情</button>  
+      </view>
+    </view>
+
+     </view>
+  </view>
+</view>
+
+<modal hidden="{{hidden}}" title="课程详情" confirm-text="确认" cancel-text="取消" bindcancel="cancel" bindconfirm="cancel" >
+    <view class='detail'>
+      <view>
+        <span>课程名:</span>
+        <span>{{detail.courseName}}</span>
+      </view>
+      <view>
+        <span>老师: </span>
+        <span>{{detail.teacherName}}</span>
+      </view>
+      <view>
+        <span>教室: </span>
+        <span>{{detail.classAddress}}</span>
+      </view>
+      <view>
+        <span>签到状态: </span>
+        <span wx:if='{{detail.status==="0"}}'>
+        正在签到
+        </span>
+        <span wx:if='{{detail.status==="1"}}'>
+        未签到
+        </span>
+      </view>
+      <view>
+        <span>已签节数: </span>
+        <span>{{detail.classCount}}</span>
+      </view>
+      <view>
+        <span>详情: </span>
+        <span>{{detail.courseInfo}}</span>
+      </view>
+    </view>
+</modal>
+
+</view>
+

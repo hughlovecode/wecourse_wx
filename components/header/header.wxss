@@ -1,0 +1,70 @@
+/* components/header/header.wxss */
+/*用户信息 */
+.userInfo{ 
+ position: relative;
+ width: 100%;
+ height: 450rpx; 
+ background-color: white;
+ border-radius: 10rpx;
+ box-shadow: 4rpx 4rpx 4rpx #aaaaaa;
+ border:1px solid #ccc
+} 
+/*头像&&姓名view*/
+.row1{
+  position: absolute;
+  top: 30rpx;
+  left: 30rpx;
+  height: 100rpx;
+  width: calc(100% - 70rpx);
+  border-right: 10rpx solid rgb(249, 115, 130);
+}
+.userImg{
+  position: absolute; 
+  height: 100rpx;
+  width: 100rpx;   
+}
+.user-img{
+  height: 100%;
+  width: 100%; 
+  border-radius: 50%;
+  border: 1rpx solid #ccc;
+  overflow: hidden;
+} 
+.nameText{
+  font-size: 30rpx;
+  color: #ccc;
+  position: relative;
+  left: 120rpx;
+  top: 25rpx;
+  
+}
+.StudentIdText{
+  font-size: 30rpx;
+  color: black;
+  position: absolute;
+  right: 10rpx;
+  top: 25rpx; 
+}
+/*广告位置*/
+.InfoText{
+  font-size: 35rpx;
+  color: #ccc;
+  position: relative;
+  left: 30rpx;
+  top: 130rpx;
+}
+.adviseImg{
+  height: 235rpx;
+  width: calc(100% - 60rpx);
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+  background-color: #ccc;
+  border-radius: 10rpx;
+  box-shadow: 4rpx 4rpx 4rpx #aaaaaa;
+}
+.adv-img{
+  height: 100%;
+  width: 100%;
+  border-radius: 10rpx;
+}

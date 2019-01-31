@@ -1,0 +1,15 @@
+<view class='userInfo'>
+<!--头像和姓名-->
+<view class='row1'>
+<view class='userImg'>
+<image class="user-img" src="{{userImg}}"></image> 
+</view>
+<view class='nameText'>{{userName}}</view>
+<view class='StudentIdText'>{{userId}}</view>
+</view>
+<!--广告-->
+<view class='InfoText'>屠龙宝刀点击就送</view> 
+<view class='adviseImg'>
+<image class="adv-img" src="../../image/loginLog.jpg"></image> 
+</view>
+</view>

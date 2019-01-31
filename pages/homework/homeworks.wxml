@@ -1,0 +1,62 @@
+
+
+<view class="container"> 
+<view class='innerContainer'>
+
+ 
+
+<!--作业课程列表-->
+<view style='display:{{ListDisplay}}'>
+
+<view wx:for="{{courseList}}" wx:key="">
+
+
+<view class='CourseArrayItem'>
+<view class='thumbImg'>
+ <image class="thumb-img" src="../../image/loginLog.jpg"></image> 
+</view>
+<view class='CourseName'>{{item.courseName}}</view>
+<view class='CourseTeacher'>{{item.courseSN}}</view>
+<button class='CourseInfo' bindtap='open' data-CourseInfo="{{item}}">作业详情</button>
+</view>
+
+
+</view>
+
+</view>
+<!--作业详情的框-->
+<view style='display:{{CourseDisplay}}'>
+<view class='CourseArrayItem'>
+<view class='thumbImg'>
+ <image class="thumb-img" src="../../image/loginLog.jpg"></image> 
+</view>
+<view class='CourseName'>{{homework_courseDetail.courseName}}</view>
+<view class='CourseTeacher'>{{homework_courseDetail.teacherName}}</view>
+<button class='CourseInfo' bindtap='close' >关闭</button>
+</view>
+
+<view wx:for="{{homeworkArr}}" wx:key="">
+<view class='Homework'>
+<text class='title'>{{item.title}}</text>
+<text class='time'>{{item.time}}</text>
+<textarea class='content'>{{item.content}}</textarea>
+
+</view>
+</view>
+
+</view>
+
+
+
+
+
+ 
+
+ 
+</view>
+</view>
+
+
+
+
+

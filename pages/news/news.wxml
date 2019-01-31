@@ -1,0 +1,28 @@
+<!--pages/news/news.wxml-->
+<view wx:for="{{newsList}}" wx:key='' style='display:{{listTag}}'>
+
+<view class='item' bindtap='getDetail' data-ItemInfo="{{item}}">
+<span class='title'>{{item.title}}<br/></span>
+<span class='tip'>{{item.author}}   {{item.rtime}}</span>
+</view>
+
+</view>
+
+<!--detail-->
+<view style='display:{{detailTag}}'>
+  <view class='row1'>
+  <span class='detail_title'>{{detail.title}}</span>
+  <view bindtap='back' class='close'>关闭</view>
+  </view>
+  <view class='detail_author'>
+  <span >{{detail.author}}  {{detail.rtime}}</span>
+  </view>
+  <br/>
+  <br/>
+  <view class='detail_content'>
+    <view wx:for="{{detail.content}}" wx:key="">
+    <p>{{item}}</p>
+    </view>
+  
+  </view>
+</view>
