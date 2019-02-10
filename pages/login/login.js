@@ -4,14 +4,14 @@ var that = this;
 var CODE = ''
 Page({
   data: {
-    userName: '',
+    userId: '',
     password: ''
   },
 
   // 获取输入账号 
   userNameInput: function (e) {
     this.setData({
-      userName: e.detail.value
+      userId: e.detail.value
     })
   },
 
@@ -26,7 +26,7 @@ Page({
   login: function () {
 
 
-    if (this.data.userName.length == 0 || this.data.password.length == 0) {
+    if (this.data.userId.length == 0 || this.data.password.length == 0) {
       wx.showToast({
         title: '用户名和密码不能为空',
         icon: 'loading',
@@ -40,7 +40,7 @@ Page({
           url: 'https://www.udoris.cn/userInfo/login', // 仅为示例，并非真实的接口地址
           method: 'POST',
           data: {
-            userName: this.data.userName,
+            userId: this.data.userId,
             password: this.data.password
           },
           header: {

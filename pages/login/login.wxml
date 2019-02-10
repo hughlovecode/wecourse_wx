@@ -7,8 +7,8 @@
  <!--账号-->
  <view class="inputView"> 
   <image class="nameImage" src="../../image/name.png"></image> 
-  <label class="loginLab">用户名</label> 
-  <input class="inputText" placeholder="请输入用户名" bindinput="userNameInput" /> 
+  <label class="loginLab">用户id</label> 
+  <input class="inputText" placeholder="请输入用户id" bindinput="userNameInput" /> 
  </view> 
  <view class="line"></view> 
   
