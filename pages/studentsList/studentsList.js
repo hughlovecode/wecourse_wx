@@ -176,8 +176,11 @@ Page({
             })
             that.post('https://www.udoris.cn/course/detail', params).then((res) => {
               that.setData({
-                detail: res.data.result.courseDetail
+                detail: res.data.result.courseDetail,
+                students: res.data.result.courseDetail.students,
+                classCount: res.data.result.courseDetail.classCount
               })
+              //console.log(this.data)
             })
           }
         })
@@ -266,7 +269,7 @@ Page({
             that.post('https://www.udoris.cn/course/detail',params).then((res)=>{
               that.setData({
                 detail:res.data.result.courseDetail,
-                courseSSID:''
+                students: res.data.result.courseDetail.students
               })
             })
           }
