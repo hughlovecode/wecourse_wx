@@ -1,4 +1,6 @@
 //app.js
+import http from './utils/http.js'
+import prompt from './utils/prompt.js'
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -11,6 +13,42 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        if (res.code) {
+          http.post('/userInfo/wxLogin', { code: res.code }).then(res => {
+            let data = res.data;
+            if (data.status === '3') {
+              prompt.modal('提示', '请先绑定账号')
+                .then(res => {
+                  wx.redirectTo({
+                    url: '/pages/login/login',
+                  })
+
+                })
+                .catch(err => {
+                  prompt.toast('异常!code=3')
+                })
+            } else if (data.status === '0') {
+              console.log(data)
+              let userInfo = data.userInfo
+              getApp().globalData.userId = userInfo.userId;
+              getApp().globalData.userName = userInfo.userName;
+              getApp().globalData.userImg = userInfo.userImg;
+              getApp().globalData.status = userInfo.status;
+              getApp().globalData.courseList = userInfo.courseList;
+              wx.switchTab({
+                url: '/pages/user/user'
+              })
+            } else {
+              prompt.toast('异常!code=0')
+            }
+          }).catch(err => {
+            prompt.toast('异常!code=1')
+            console.log(err)
+          })
+
+        } else {
+          prompt.toast('res.code无法得到')
+        }
       }
     })
     // 获取用户信息
